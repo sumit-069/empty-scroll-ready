@@ -61,7 +61,7 @@ export default function Login() {
     } else {
       toast({
         title: "Login Successful",
-        description: "Welcome back to MediAssist AI!",
+        description: "Welcome back to नित्योत्कर्ष!",
       });
       navigate('/dashboard');
     }
@@ -141,7 +141,7 @@ export default function Login() {
               <Stethoscope className="h-8 w-8 text-white" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-foreground">MediAssist AI</h1>
+              <h1 className="text-2xl font-bold text-foreground">नित्योत्कर्ष</h1>
               <p className="text-sm text-muted-foreground">For Healthcare Professionals</p>
             </div>
           </div>
@@ -239,7 +239,7 @@ export default function Login() {
 
                   <div className="text-center pt-4 border-t border-border">
                     <p className="text-sm text-muted-foreground">
-                      New to MediAssist AI?{' '}
+                      New to नित्योत्कर्ष?{' '}
                       <Button variant="link" size="sm" className="p-0 text-primary">
                         Request Access
                       </Button>

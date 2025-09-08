@@ -60,7 +60,7 @@ export const Navigation = () => {
               <Stethoscope className="h-6 w-6 text-white" />
             </div>
             <div className="font-bold text-xl text-foreground">
-              MediAssist <span className="text-primary font-normal">AI</span>
+              नित्योत्कर्ष
             </div>
           </Link>
 
