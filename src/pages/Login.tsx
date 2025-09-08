@@ -136,14 +136,12 @@ export default function Login() {
       <div className="max-w-md mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center space-x-3 mb-6">
-            <div className="p-3 bg-gradient-hero rounded-xl shadow-feature">
-              <Stethoscope className="h-8 w-8 text-white" />
-            </div>
-            <div>
-              <h1 className="text-2xl font-bold text-foreground">नित्योत्कर्ष</h1>
-              <p className="text-sm text-muted-foreground">For Healthcare Professionals</p>
-            </div>
+          <div className="flex justify-center mb-6">
+            <img 
+              src="/lovable-uploads/f45589f9-0bc5-486a-872d-c401e52cd58b.png" 
+              alt="नित्योत्कर्ष Logo" 
+              className="h-16 w-auto"
+            />
           </div>
         </div>
 

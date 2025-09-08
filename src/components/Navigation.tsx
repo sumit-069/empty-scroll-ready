@@ -56,12 +56,11 @@ export const Navigation = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3 group">
-            <div className="p-2 bg-gradient-hero rounded-xl shadow-feature group-hover:shadow-hero transition-all duration-300">
-              <Stethoscope className="h-6 w-6 text-white" />
-            </div>
-            <div className="font-bold text-xl text-foreground">
-              नित्योत्कर्ष
-            </div>
+            <img 
+              src="/lovable-uploads/f45589f9-0bc5-486a-872d-c401e52cd58b.png" 
+              alt="नित्योत्कर्ष Logo" 
+              className="h-10 w-auto group-hover:scale-105 transition-all duration-300"
+            />
           </Link>
 
           {/* Desktop Navigation */}
