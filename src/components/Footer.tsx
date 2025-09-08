@@ -8,7 +8,7 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-foreground">MediAssist AI</h3>
+            <h3 className="text-lg font-semibold text-foreground">नित्योत्कर्ष</h3>
             <p className="text-sm text-muted-foreground leading-relaxed">
               AI-powered medical assistant platform designed exclusively for healthcare professionals.
             </p>
@@ -80,7 +80,7 @@ export const Footer = () => {
         <div className="mt-12 pt-8 border-t border-border">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-sm text-muted-foreground">
-              © 2024 MediAssist AI. All rights reserved.
+              © 2024 नित्योत्कर्ष. All rights reserved.
             </p>
             <p className="text-xs text-muted-foreground">
               <span className="inline-flex items-center space-x-1">
