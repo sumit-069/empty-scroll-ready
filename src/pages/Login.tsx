@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -32,32 +34,101 @@ export default function Login() {
     hospital: '',
     agreedToTerms: false
   });
+  const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
+  const { signIn, signUp, user } = useAuth();
+  const navigate = useNavigate();
 
-  const handleLogin = (e: React.FormEvent) => {
+  // Redirect if already logged in
+  useEffect(() => {
+    if (user) {
+      navigate('/dashboard');
+    }
+  }, [user, navigate]);
+
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate login process
-    toast({
-      title: "Login Successful",
-      description: "Welcome back to MediAssist AI!",
-    });
+    setIsLoading(true);
+
+    const { error } = await signIn(loginData.email, loginData.password);
+    
+    if (error) {
+      toast({
+        title: "Login Failed",
+        description: error.message || "Invalid email or password. Please try again.",
+        variant: "destructive",
+      });
+    } else {
+      toast({
+        title: "Login Successful",
+        description: "Welcome back to MediAssist AI!",
+      });
+      navigate('/dashboard');
+    }
+    
+    setIsLoading(false);
   };
 
-  const handleSignup = (e: React.FormEvent) => {
+  const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
+
     if (signupData.password !== signupData.confirmPassword) {
       toast({
         title: "Password Mismatch",
         description: "Please ensure both passwords match.",
         variant: "destructive",
       });
+      setIsLoading(false);
       return;
     }
-    // Simulate signup process
-    toast({
-      title: "Account Created",
-      description: "Your MediAssist AI account has been created successfully!",
-    });
+
+    if (signupData.password.length < 6) {
+      toast({
+        title: "Password Too Short",
+        description: "Password must be at least 6 characters long.",
+        variant: "destructive",
+      });
+      setIsLoading(false);
+      return;
+    }
+
+    const metadata = {
+      first_name: signupData.firstName,
+      last_name: signupData.lastName,
+      license_number: signupData.licenseNumber,
+      specialty: signupData.specialty,
+      hospital: signupData.hospital,
+    };
+
+    const { error } = await signUp(signupData.email, signupData.password, metadata);
+    
+    if (error) {
+      toast({
+        title: "Signup Failed",
+        description: error.message || "Failed to create account. Please try again.",
+        variant: "destructive",
+      });
+    } else {
+      toast({
+        title: "Account Created Successfully!",
+        description: "Please check your email to verify your account before signing in.",
+      });
+      // Reset form
+      setSignupData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+        licenseNumber: '',
+        specialty: '',
+        hospital: '',
+        agreedToTerms: false
+      });
+    }
+    
+    setIsLoading(false);
   };
 
   return (
@@ -148,9 +219,22 @@ export default function Login() {
                     </Button>
                   </div>
 
-                  <Button type="submit" className="w-full bg-gradient-hero border-0 shadow-feature hover:shadow-hero">
-                    Sign In to Dashboard
-                    <ArrowRight className="ml-2 h-4 w-4" />
+                  <Button 
+                    type="submit" 
+                    className="w-full bg-gradient-hero border-0 shadow-feature hover:shadow-hero"
+                    disabled={isLoading}
+                  >
+                    {isLoading ? (
+                      <>
+                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                        Signing In...
+                      </>
+                    ) : (
+                      <>
+                        Sign In to Dashboard
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </>
+                    )}
                   </Button>
 
                   <div className="text-center pt-4 border-t border-border">
@@ -295,10 +379,19 @@ export default function Login() {
                   <Button 
                     type="submit" 
                     className="w-full bg-gradient-hero border-0 shadow-feature hover:shadow-hero"
-                    disabled={!signupData.agreedToTerms}
+                    disabled={!signupData.agreedToTerms || isLoading}
                   >
-                    Create Professional Account
-                    <ArrowRight className="ml-2 h-4 w-4" />
+                    {isLoading ? (
+                      <>
+                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                        Creating Account...
+                      </>
+                    ) : (
+                      <>
+                        Create Professional Account
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </>
+                    )}
                   </Button>
                 </form>
               </TabsContent>

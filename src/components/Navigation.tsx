@@ -1,19 +1,38 @@
 import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Menu, X, User, Stethoscope } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { Button } from "@/components/ui/button";
+import { useAuth } from "@/contexts/AuthContext";
+import { 
+  Stethoscope, 
+  Menu, 
+  X,
+  Activity,
+  Brain,
+  FileText,
+  Heart,
+  Calendar,
+  BookOpen,
+  Trophy,
+  User,
+  LogOut
+} from "lucide-react";
 
 export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { user, signOut } = useAuth();
 
-  const navItems = [
-    { name: 'Home', href: '/' },
-    { name: 'Prognosis', href: '/prognosis' },
-    { name: 'Diagnosis', href: '/diagnosis' },
-    { name: 'Patient Records', href: '/records' },
-    { name: 'Tributes', href: '/tributes' },
-    { name: 'Checkups', href: '/checkups' },
-    { name: 'Articles', href: '/articles' },
+  const handleSignOut = async () => {
+    await signOut();
+    setIsOpen(false);
+  };
+
+  const navigation = [
+    { name: 'AI Prognosis', href: '/prognosis', icon: Brain },
+    { name: 'AI Diagnosis', href: '/diagnosis', icon: Activity },
+    { name: 'Patient Records', href: '/records', icon: FileText },
+    { name: 'Health Checkups', href: '/checkups', icon: Heart },
+    { name: 'Medical Tributes', href: '/tributes', icon: Trophy },
+    { name: 'Articles', href: '/articles', icon: BookOpen },
   ];
 
   return (
@@ -32,26 +51,40 @@ export const Navigation = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-1">
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                to={item.href}
-                className="px-3 py-2 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent transition-smooth"
-              >
-                {item.name}
-              </Link>
-            ))}
+            {navigation.map((item) => {
+              const Icon = item.icon;
+              return (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className="flex items-center px-3 py-2 text-sm font-medium text-muted-foreground hover:text-primary hover:bg-accent rounded-md transition-colors"
+                >
+                  <Icon className="h-4 w-4 mr-2" />
+                  {item.name}
+                </Link>
+              );
+            })}
           </div>
 
-          {/* Login Button */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button variant="outline" size="sm">
-              <User className="h-4 w-4 mr-2" />
-              Login
-            </Button>
-            <Button size="sm" className="bg-gradient-hero border-0 shadow-feature hover:shadow-hero">
-              Dashboard
-            </Button>
+            {user ? (
+              <div className="flex items-center space-x-3">
+                <Button asChild variant="outline" size="sm">
+                  <Link to="/dashboard">
+                    <User className="h-4 w-4 mr-2" />
+                    Dashboard
+                  </Link>
+                </Button>
+                <Button variant="outline" size="sm" onClick={handleSignOut}>
+                  <LogOut className="h-4 w-4 mr-2" />
+                  Sign Out
+                </Button>
+              </div>
+            ) : (
+              <Button asChild variant="outline" size="sm">
+                <Link to="/login">Sign In</Link>
+              </Button>
+            )}
           </div>
 
           {/* Mobile menu button */}
@@ -68,26 +101,44 @@ export const Navigation = () => {
         {/* Mobile Navigation */}
         {isOpen && (
           <div className="md:hidden py-4 border-t border-border bg-card/50 rounded-b-xl">
-            <div className="flex flex-col space-y-2">
-              {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className="px-3 py-2 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent transition-smooth"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {item.name}
-                </Link>
-              ))}
-              <div className="flex flex-col space-y-2 pt-4 border-t border-border">
-                <Button variant="outline" size="sm" className="justify-center">
-                  <User className="h-4 w-4 mr-2" />
-                  Login
+            <div className="flex flex-col space-y-2 px-2">
+              {navigation.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <Link
+                    key={item.name}
+                    to={item.href}
+                    className="flex items-center px-3 py-2 text-sm font-medium text-muted-foreground hover:text-primary hover:bg-accent rounded-md transition-colors"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <Icon className="h-4 w-4 mr-2" />
+                    {item.name}
+                  </Link>
+                );
+              })}
+            </div>
+
+            <div className="px-4 py-3 border-t border-border">
+              {user ? (
+                <div className="space-y-2">
+                  <Button asChild className="w-full" size="sm" variant="outline">
+                    <Link to="/dashboard" onClick={() => setIsOpen(false)}>
+                      <User className="h-4 w-4 mr-2" />
+                      Dashboard
+                    </Link>
+                  </Button>
+                  <Button className="w-full" size="sm" onClick={handleSignOut}>
+                    <LogOut className="h-4 w-4 mr-2" />
+                    Sign Out
+                  </Button>
+                </div>
+              ) : (
+                <Button asChild className="w-full" size="sm">
+                  <Link to="/login" onClick={() => setIsOpen(false)}>
+                    Sign In
+                  </Link>
                 </Button>
-                <Button size="sm" className="bg-gradient-hero border-0 justify-center">
-                  Dashboard
-                </Button>
-              </div>
+              )}
             </div>
           </div>
         )}
