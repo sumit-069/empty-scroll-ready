@@ -19,11 +19,26 @@ import {
 
 export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { user, signOut } = useAuth();
+  
+  // Use a default state in case auth context is not available
+  let user = null;
+  let signOut = async () => {};
+  
+  try {
+    const authData = useAuth();
+    user = authData.user;
+    signOut = authData.signOut;
+  } catch (error) {
+    // Context not available yet - use defaults
+  }
 
   const handleSignOut = async () => {
-    await signOut();
-    setIsOpen(false);
+    try {
+      await signOut();
+      setIsOpen(false);
+    } catch (error) {
+      console.log('Sign out error:', error);
+    }
   };
 
   const navigation = [
