@@ -12,10 +12,6 @@ export const Footer = () => {
             <p className="text-sm text-muted-foreground leading-relaxed">
               AI-powered medical assistant platform designed exclusively for healthcare professionals.
             </p>
-            <div className="flex items-center space-x-2 text-sm text-muted-foreground">
-              <Heart className="h-4 w-4 text-red-500" />
-              <span>Powered by Next.js + Supabase + OpenAI</span>
-            </div>
           </div>
 
           {/* Quick Links */}
