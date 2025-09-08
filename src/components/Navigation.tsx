@@ -55,13 +55,13 @@ export const Navigation = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3 group">
+          <Link to="/" className="flex items-center space-x-2 group min-w-0">
             <img 
               src="/lovable-uploads/f45589f9-0bc5-486a-872d-c401e52cd58b.png" 
               alt="नित्योत्कर्ष Logo" 
-              className="h-10 w-auto group-hover:scale-105 transition-all duration-300"
+              className="h-8 sm:h-10 w-auto flex-shrink-0 group-hover:scale-105 transition-all duration-300"
             />
-            <div className="font-bold text-xl text-foreground">
+            <div className="font-bold text-lg sm:text-xl text-foreground hidden xs:block truncate">
               नित्योत्कर्ष
             </div>
           </Link>
