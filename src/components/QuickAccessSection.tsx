@@ -134,10 +134,19 @@ export const QuickAccessSection = () => {
                 Join hundreds of doctors already using AI to enhance their clinical decision-making and improve patient outcomes.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" className="bg-gradient-hero border-0 shadow-feature hover:shadow-hero">
+                <Button 
+                  size="lg" 
+                  className="bg-gradient-hero border-0 shadow-feature hover:shadow-hero"
+                  onClick={() => window.open('/login', '_blank')}
+                >
                   Start Free Trial
                 </Button>
-                <Button variant="outline" size="lg" className="border-primary/20 hover:bg-primary/5">
+                <Button 
+                  variant="outline" 
+                  size="lg" 
+                  className="border-primary/20 hover:bg-primary/5"
+                  onClick={() => window.open('/contact', '_blank')}
+                >
                   Schedule Demo
                 </Button>
               </div>
