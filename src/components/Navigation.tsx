@@ -61,6 +61,9 @@ export const Navigation = () => {
               alt="नित्योत्कर्ष Logo" 
               className="h-10 w-auto group-hover:scale-105 transition-all duration-300"
             />
+            <div className="font-bold text-xl text-foreground">
+              नित्योत्कर्ष
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
