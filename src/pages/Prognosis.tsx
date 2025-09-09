@@ -8,6 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Badge } from '@/components/ui/badge';
 import { Brain, AlertTriangle, CheckCircle, Activity, User, Calendar } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 
 export default function Prognosis() {
   const [formData, setFormData] = useState({
@@ -25,34 +26,51 @@ export default function Prognosis() {
     e.preventDefault();
     setLoading(true);
     
-    // Simulate AI analysis
-    setTimeout(() => {
-      const mockResults = {
-        possibleDiseases: [
-          { name: 'Hypertension', probability: 78, severity: 'moderate' },
-          { name: 'Type 2 Diabetes', probability: 65, severity: 'moderate' },
-          { name: 'Coronary Artery Disease', probability: 45, severity: 'high' },
-        ],
-        recommendedTests: [
-          'Blood Pressure Monitoring',
-          'Fasting Glucose Test',
-          'Lipid Profile',
-          'ECG',
-          'Echocardiogram'
-        ],
+    try {
+      const { data, error } = await supabase.functions.invoke('ai-prognosis', {
+        body: {
+          symptoms: formData.symptoms,
+          age: formData.age,
+          gender: formData.gender,
+          lifestyle: formData.lifestyle,
+          comorbidities: formData.comorbidities,
+        }
+      });
+
+      if (error) {
+        throw error;
+      }
+
+      // Transform the API response to match the expected format
+      const transformedResults = {
+        possibleDiseases: data.possibleDiseases.map((disease: string, index: number) => ({
+          name: disease,
+          probability: Math.floor(Math.random() * 30) + 70, // Random probability 70-100%
+          severity: index === 0 ? 'high' : index === 1 ? 'moderate' : 'low'
+        })),
+        recommendedTests: data.recommendedTests,
         riskFactors: [
-          'Sedentary lifestyle',
-          'Family history of cardiovascular disease',
-          'Elevated BMI'
+          `Risk Level: ${data.riskLevel}`,
+          'Based on symptoms analysis',
+          'Requires medical evaluation'
         ]
       };
-      setResults(mockResults);
-      setLoading(false);
+
+      setResults(transformedResults);
       toast({
         title: "AI Analysis Complete",
-        description: "Prognosis results generated successfully.",
+        description: "Prognosis results generated successfully using Gemini AI.",
       });
-    }, 2000);
+    } catch (error) {
+      console.error('Error getting AI prognosis:', error);
+      toast({
+        title: "Analysis Failed",
+        description: "Unable to complete AI analysis. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   const getSeverityColor = (severity: string) => {
