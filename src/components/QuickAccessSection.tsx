@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Link } from 'react-router-dom';
 import { 
   Brain, 
   Stethoscope, 
@@ -92,33 +93,34 @@ export const QuickAccessSection = () => {
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (
-              <Card 
-                key={feature.title}
-                className="group cursor-pointer border-border/50 hover:border-primary/20 bg-gradient-card hover:shadow-feature transition-all duration-300 animate-scale-in"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <CardHeader className="space-y-4">
-                  <div className={`inline-flex w-fit p-4 rounded-2xl ${feature.bgColor} group-hover:scale-110 transition-transform duration-300`}>
-                    <Icon className={`h-6 w-6 ${feature.iconColor}`} />
-                  </div>
-                  <CardTitle className="text-xl font-semibold group-hover:text-primary transition-colors">
-                    {feature.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <p className="text-muted-foreground leading-relaxed">
-                    {feature.description}
-                  </p>
-                  <Button 
-                    variant="ghost" 
-                    size="sm"
-                    className="w-full justify-between group-hover:bg-primary/5 group-hover:text-primary"
-                  >
-                    Access Feature
-                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                </CardContent>
-              </Card>
+              <Link key={feature.title} to={feature.href}>
+                <Card 
+                  className="group cursor-pointer border-border/50 hover:border-primary/20 bg-gradient-card hover:shadow-feature transition-all duration-300 animate-scale-in"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <CardHeader className="space-y-4">
+                    <div className={`inline-flex w-fit p-4 rounded-2xl ${feature.bgColor} group-hover:scale-110 transition-transform duration-300`}>
+                      <Icon className={`h-6 w-6 ${feature.iconColor}`} />
+                    </div>
+                    <CardTitle className="text-xl font-semibold group-hover:text-primary transition-colors">
+                      {feature.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <p className="text-muted-foreground leading-relaxed">
+                      {feature.description}
+                    </p>
+                    <Button 
+                      variant="ghost" 
+                      size="sm"
+                      className="w-full justify-between group-hover:bg-primary/5 group-hover:text-primary"
+                    >
+                      Access Feature
+                      <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                  </CardContent>
+                </Card>
+              </Link>
             );
           })}
         </div>
@@ -134,20 +136,11 @@ export const QuickAccessSection = () => {
                 Join hundreds of doctors already using AI to enhance their clinical decision-making and improve patient outcomes.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button 
-                  size="lg" 
-                  className="bg-gradient-hero border-0 shadow-feature hover:shadow-hero"
-                  onClick={() => window.open('/login', '_blank')}
-                >
-                  Start Free Trial
+                <Button asChild size="lg" className="bg-gradient-hero border-0 shadow-feature hover:shadow-hero">
+                  <Link to="/login">Start Free Trial</Link>
                 </Button>
-                <Button 
-                  variant="outline" 
-                  size="lg" 
-                  className="border-primary/20 hover:bg-primary/5"
-                  onClick={() => window.open('/contact', '_blank')}
-                >
-                  Schedule Demo
+                <Button asChild variant="outline" size="lg" className="border-primary/20 hover:bg-primary/5">
+                  <Link to="/contact">Schedule Demo</Link>
                 </Button>
               </div>
             </div>
