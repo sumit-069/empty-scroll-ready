@@ -8,6 +8,7 @@ import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Stethoscope, FileText, History, Lightbulb, AlertTriangle, Activity, Clock } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 
 export default function Diagnosis() {
   const [formData, setFormData] = useState({
@@ -24,58 +25,35 @@ export default function Diagnosis() {
     e.preventDefault();
     setLoading(true);
     
-    // Simulate AI analysis
-    setTimeout(() => {
-      const mockResults = {
-        treatmentPlan: {
-          primary: [
-            'ACE inhibitors (Lisinopril 10mg daily)',
-            'Lifestyle modifications (diet, exercise)',
-            'Regular blood pressure monitoring',
-          ],
-          alternative: [
-            'Calcium channel blockers (Amlodipine 5mg)',
-            'Diuretics (Hydrochlorothiazide 25mg)',
-            'Beta-blockers (Metoprolol 50mg)',
-          ]
-        },
-        medications: [
-          { name: 'Lisinopril', dosage: '10mg daily', notes: 'Monitor kidney function' },
-          { name: 'Metformin', dosage: '500mg twice daily', notes: 'Take with meals' },
-          { name: 'Atorvastatin', dosage: '20mg at bedtime', notes: 'Monitor liver enzymes' },
-        ],
-        followUp: [
-          'Blood pressure check in 2 weeks',
-          'Comprehensive metabolic panel in 1 month',
-          'Cardiology consultation within 3 months',
-          'Lifestyle counseling appointment'
-        ],
-        similarCases: [
-          {
-            id: 1,
-            patient: 'Male, 52 years',
-            condition: 'Hypertension with diabetes',
-            treatment: 'ACE inhibitor + Metformin',
-            outcome: 'Blood pressure controlled, HbA1c improved',
-            duration: '6 months'
-          },
-          {
-            id: 2,
-            patient: 'Female, 48 years',
-            condition: 'Essential hypertension',
-            treatment: 'Lifestyle changes + Lisinopril',
-            outcome: 'Target BP achieved',
-            duration: '3 months'
-          }
-        ]
-      };
-      setResults(mockResults);
-      setLoading(false);
+    try {
+      const { data, error } = await supabase.functions.invoke('ai-diagnosis', {
+        body: {
+          condition: formData.condition,
+          patientHistory: formData.patientHistory,
+          currentSymptoms: formData.currentSymptoms,
+          previousTreatments: formData.previousTreatments,
+        }
+      });
+
+      if (error) {
+        throw error;
+      }
+
+      setResults(data);
       toast({
         title: "AI Diagnosis Complete",
-        description: "Treatment recommendations generated successfully.",
+        description: "Treatment recommendations generated successfully using Gemini AI.",
       });
-    }, 2000);
+    } catch (error) {
+      console.error('Error getting AI diagnosis:', error);
+      toast({
+        title: "Analysis Failed",
+        description: "Unable to complete AI diagnosis. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

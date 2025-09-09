@@ -69,3 +69,6 @@ gw_port = 54329
 
 [functions.ai-prognosis]
 verify_jwt = false
+
+[functions.ai-diagnosis]
+verify_jwt = false
