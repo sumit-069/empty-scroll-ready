@@ -6,60 +6,65 @@
 
 @layer base {
   :root {
-    /* Medical color palette */
-    --background: 0 0% 100%;
-    --foreground: 213 27% 15%;
+    /* Enhanced Medical Color Palette */
+    --background: 220 20% 99%;
+    --foreground: 215 25% 12%;
 
     --card: 0 0% 100%;
-    --card-foreground: 213 27% 15%;
+    --card-foreground: 215 25% 12%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 213 27% 15%;
+    --popover-foreground: 215 25% 12%;
 
-    /* Medical blue primary */
-    --primary: 217 91% 60%;
+    /* Premium medical teal primary */
+    --primary: 190 85% 45%;
     --primary-foreground: 0 0% 100%;
-    --primary-hover: 217 91% 55%;
+    --primary-hover: 190 85% 40%;
+    --primary-glow: 190 85% 65%;
 
-    /* Subtle secondary tones */
-    --secondary: 213 27% 96%;
-    --secondary-foreground: 213 27% 20%;
+    /* Sophisticated secondary */
+    --secondary: 215 20% 96%;
+    --secondary-foreground: 215 25% 18%;
 
-    --muted: 213 27% 96%;
-    --muted-foreground: 213 27% 45%;
+    --muted: 215 20% 95%;
+    --muted-foreground: 215 15% 50%;
 
-    --accent: 213 27% 96%;
-    --accent-foreground: 213 27% 20%;
+    --accent: 215 20% 94%;
+    --accent-foreground: 215 25% 18%;
 
-    /* Medical alert colors */
-    --destructive: 0 84% 60%;
+    /* Medical status colors */
+    --destructive: 0 75% 55%;
     --destructive-foreground: 0 0% 100%;
     
-    --success: 142 76% 36%;
+    --success: 160 70% 40%;
     --success-foreground: 0 0% 100%;
     
-    --warning: 38 92% 50%;
+    --warning: 35 85% 55%;
     --warning-foreground: 0 0% 100%;
 
-    --border: 213 27% 91%;
-    --input: 213 27% 91%;
-    --ring: 217 91% 60%;
+    --border: 215 20% 88%;
+    --input: 215 20% 90%;
+    --ring: 190 85% 45%;
 
-    --radius: 0.75rem;
+    --radius: 1rem;
 
-    /* Medical gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(217 91% 60%), hsl(217 91% 70%));
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(213 27% 98%));
-    --gradient-feature: linear-gradient(135deg, hsl(213 27% 96%), hsl(0 0% 100%));
+    /* Premium medical gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(190 85% 45%), hsl(210 85% 55%), hsl(230 85% 65%));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(215 20% 97%));
+    --gradient-feature: linear-gradient(135deg, hsl(215 20% 98%), hsl(190 20% 98%));
+    --gradient-accent: linear-gradient(45deg, hsl(190 85% 45%), hsl(160 70% 40%));
+    --gradient-surface: linear-gradient(180deg, hsl(220 20% 99%), hsl(215 20% 96%));
 
-    /* Medical shadows */
-    --shadow-card: 0 4px 6px -1px hsl(213 27% 15% / 0.08), 0 2px 4px -1px hsl(213 27% 15% / 0.04);
-    --shadow-feature: 0 10px 25px -5px hsl(217 91% 60% / 0.1), 0 10px 10px -5px hsl(217 91% 60% / 0.04);
-    --shadow-hero: 0 20px 40px -10px hsl(217 91% 60% / 0.15);
+    /* Elegant medical shadows */
+    --shadow-card: 0 8px 32px hsl(215 25% 12% / 0.06), 0 4px 16px hsl(215 25% 12% / 0.04);
+    --shadow-feature: 0 12px 40px hsl(190 85% 45% / 0.12), 0 4px 16px hsl(190 85% 45% / 0.08);
+    --shadow-hero: 0 24px 80px hsl(190 85% 45% / 0.20), 0 8px 32px hsl(190 85% 45% / 0.12);
+    --shadow-glow: 0 0 60px hsl(190 85% 65% / 0.3), 0 0 120px hsl(190 85% 65% / 0.15);
 
-    /* Transitions */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    /* Smooth transitions */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --transition-elastic: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
     --sidebar-background: 0 0% 98%;
 
