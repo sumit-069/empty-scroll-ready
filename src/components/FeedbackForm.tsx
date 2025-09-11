@@ -22,7 +22,7 @@ export const FeedbackForm = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch('https://sumit-06.app.n8n.cloud/form/cb5a81af-f774-4837-9cdf-adb29543360f', {
+      const response = await fetch('https://sumit-06.app.n8n.cloud/webhook/be846a25-b0a9-4e6d-88e3-01d8563d3f30', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
