@@ -14,7 +14,9 @@ import {
   BookOpen,
   Trophy,
   User,
-  LogOut
+  LogOut,
+  Search,
+  MessageSquare
 } from "lucide-react";
 
 export const Navigation = () => {
@@ -44,8 +46,10 @@ export const Navigation = () => {
   const navigation = [
     { name: 'AI Prognosis', href: '/prognosis', icon: Brain },
     { name: 'AI Diagnosis', href: '/diagnosis', icon: Activity },
+    { name: 'Disease Search', href: '/disease-search', icon: Search },
     { name: 'Patient Records', href: '/records', icon: FileText },
     { name: 'Health Checkups', href: '/checkups', icon: Heart },
+    { name: 'Feedback', href: '/feedback', icon: MessageSquare },
     { name: 'Medical Tributes', href: '/tributes', icon: Trophy },
     { name: 'Articles', href: '/articles', icon: BookOpen },
   ];

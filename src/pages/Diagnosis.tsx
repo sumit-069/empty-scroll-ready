@@ -156,13 +156,23 @@ export default function Diagnosis() {
           {/* Results */}
           <div className="xl:col-span-2">
             {results ? (
-              <Tabs defaultValue="treatment" className="space-y-6">
-                <TabsList className="grid w-full grid-cols-4">
-                  <TabsTrigger value="treatment">Treatment</TabsTrigger>
+              <Tabs defaultValue="ai-diagnosis" className="space-y-6">
+                <TabsList className="grid w-full grid-cols-5">
+                  <TabsTrigger value="ai-diagnosis">AI Diagnosis</TabsTrigger>
+                  <TabsTrigger value="disease-search">Disease Search</TabsTrigger>
                   <TabsTrigger value="medications">Medications</TabsTrigger>
                   <TabsTrigger value="followup">Follow-up</TabsTrigger>
                   <TabsTrigger value="cases">Similar Cases</TabsTrigger>
                 </TabsList>
+
+                <TabsContent value="ai-diagnosis">
+                  <Tabs defaultValue="treatment" className="space-y-6">
+                    <TabsList className="grid w-full grid-cols-4">
+                      <TabsTrigger value="treatment">Treatment</TabsTrigger>
+                      <TabsTrigger value="medications">Medications</TabsTrigger>
+                      <TabsTrigger value="followup">Follow-up</TabsTrigger>
+                      <TabsTrigger value="cases">Similar Cases</TabsTrigger>
+                    </TabsList>
 
                 <TabsContent value="treatment">
                   <div className="space-y-6">
@@ -285,6 +295,27 @@ export default function Diagnosis() {
                       </Card>
                     ))}
                   </div>
+                </TabsContent>
+                  </Tabs>
+                </TabsContent>
+
+                <TabsContent value="disease-search">
+                  <Card className="bg-gradient-card shadow-card border-border/50">
+                    <CardHeader>
+                      <CardTitle className="flex items-center">
+                        <FileText className="h-5 w-5 mr-2 text-primary" />
+                        Disease Search & Information
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="p-0">
+                      <iframe
+                        src="https://lovable.dev/projects/8d68aafc-64b0-4a29-90d1-8532eb32b58d"
+                        className="w-full h-[600px] border-0 rounded-b-lg"
+                        title="Disease Search Tool"
+                        allow="fullscreen"
+                      />
+                    </CardContent>
+                  </Card>
                 </TabsContent>
               </Tabs>
             ) : (

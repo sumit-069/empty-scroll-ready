@@ -18,6 +18,8 @@ import NotFound from "./pages/NotFound";
 import Privacy from "./pages/Privacy";
 import Disclaimer from "./pages/Disclaimer";
 import Contact from "./pages/Contact";
+import Feedback from "./pages/Feedback";
+import DiseaseSearchPage from "./pages/DiseaseSearch";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +35,8 @@ const App = () => (
               <Route path="/" element={<Index />} />
               <Route path="/prognosis" element={<Prognosis />} />
               <Route path="/diagnosis" element={<Diagnosis />} />
+              <Route path="/disease-search" element={<DiseaseSearchPage />} />
+              <Route path="/feedback" element={<Feedback />} />
               <Route path="/records" element={<PatientRecords />} />
               <Route path="/tributes" element={<Tributes />} />
               <Route path="/checkups" element={<Checkups />} />
