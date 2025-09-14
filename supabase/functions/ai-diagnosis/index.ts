@@ -17,9 +17,9 @@ serve(async (req) => {
     
     console.log('AI Diagnosis request:', { condition, patientHistory, currentSymptoms, previousTreatments });
 
-    const geminiApiKey = Deno.env.get('CUSTOM_GEMINI_API_KEY');
+    const geminiApiKey = Deno.env.get('GEMINI_API_KEY');
     if (!geminiApiKey) {
-      throw new Error('CUSTOM_GEMINI_API_KEY not configured');
+      throw new Error('GEMINI_API_KEY not configured');
     }
 
     const prompt = `You are an AI medical assistant providing clinical decision support for healthcare professionals.

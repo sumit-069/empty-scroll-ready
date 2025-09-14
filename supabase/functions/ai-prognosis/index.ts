@@ -17,9 +17,9 @@ serve(async (req) => {
     
     console.log('AI Prognosis request:', { symptoms, age, gender, lifestyle, comorbidities });
 
-    const geminiApiKey = Deno.env.get('CUSTOM_GEMINI_API_KEY');
+    const geminiApiKey = Deno.env.get('GEMINI_API_KEY');
     if (!geminiApiKey) {
-      throw new Error('CUSTOM_GEMINI_API_KEY not configured');
+      throw new Error('GEMINI_API_KEY not configured');
     }
 
     const prompt = `You are a medical prognosis assistant for doctors.
