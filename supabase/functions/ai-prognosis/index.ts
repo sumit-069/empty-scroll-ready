@@ -30,19 +30,12 @@ Patient details:
 - Lifestyle: ${lifestyle}
 - Comorbidities: ${comorbidities}
 
-Task:
-1. Predict possible diseases (maximum 5).
-2. Indicate risk level (Low/Medium/High).
-3. Suggest recommended diagnostic tests (maximum 8).
-
-Please provide your response in the following JSON format:
+Based on the patient information, provide a medical prognosis analysis. Return ONLY a valid JSON object with no additional text or formatting:
 {
   "possibleDiseases": ["Disease 1", "Disease 2", "Disease 3"],
   "riskLevel": "High|Medium|Low",
   "recommendedTests": ["Test 1", "Test 2", "Test 3"]
-}
-
-Ensure the response is valid JSON and medical advice is general guidance only.`;
+}`;
 
     const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiApiKey}`, {
       method: 'POST',

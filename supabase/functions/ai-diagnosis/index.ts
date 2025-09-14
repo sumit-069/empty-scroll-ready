@@ -30,7 +30,7 @@ Patient Case Information:
 - Medical History: ${patientHistory}
 - Previous Treatments: ${previousTreatments}
 
-Please provide comprehensive treatment recommendations in the following JSON format:
+Based on the patient case information, provide comprehensive treatment recommendations. Return ONLY a valid JSON object with no additional text or formatting:
 
 {
   "treatmentPlan": {
@@ -59,16 +59,7 @@ Please provide comprehensive treatment recommendations in the following JSON for
       "duration": "Treatment duration"
     }
   ]
-}
-
-Please ensure:
-1. Treatments are evidence-based and follow current clinical guidelines
-2. Medications include specific dosages and monitoring requirements
-3. Follow-up recommendations are time-specific and actionable
-4. Similar cases are relevant and realistic
-5. All recommendations support clinical decision-making
-
-This is for clinical decision support only and should complement professional medical judgment.`;
+}`;
 
     const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiApiKey}`, {
       method: 'POST',
