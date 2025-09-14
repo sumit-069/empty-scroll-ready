@@ -69,6 +69,8 @@ gw_port = 54329
 
 [functions.ai-prognosis]
 verify_jwt = false
+env = { CUSTOM_GEMINI_API_KEY = "env(CUSTOM_GEMINI_API_KEY)" }
 
 [functions.ai-diagnosis]
 verify_jwt = false
+env = { CUSTOM_GEMINI_API_KEY = "env(CUSTOM_GEMINI_API_KEY)" }
