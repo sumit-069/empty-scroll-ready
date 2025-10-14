@@ -138,7 +138,7 @@ export default function Login() {
         <div className="text-center mb-8">
           <div className="flex justify-center mb-6">
             <img 
-              src="/lovable-uploads/f45589f9-0bc5-486a-872d-c401e52cd58b.png" 
+              src="/favicon.png" 
               alt="नित्योत्कर्ष Logo" 
               className="h-16 w-auto"
             />

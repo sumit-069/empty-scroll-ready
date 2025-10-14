@@ -9,6 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Stethoscope, FileText, History, Lightbulb, AlertTriangle, Activity, Clock } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
+import { DiseaseSearch } from '@/components/DiseaseSearch';
 
 export default function Diagnosis() {
   const [formData, setFormData] = useState({
@@ -307,13 +308,8 @@ export default function Diagnosis() {
                         Disease Search & Information
                       </CardTitle>
                     </CardHeader>
-                    <CardContent className="p-0">
-                      <iframe
-                        src="https://lovable.dev/projects/8d68aafc-64b0-4a29-90d1-8532eb32b58d"
-                        className="w-full h-[600px] border-0 rounded-b-lg"
-                        title="Disease Search Tool"
-                        allow="fullscreen"
-                      />
+                    <CardContent>
+                      <DiseaseSearch />
                     </CardContent>
                   </Card>
                 </TabsContent>

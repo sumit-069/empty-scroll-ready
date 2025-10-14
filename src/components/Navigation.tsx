@@ -61,7 +61,7 @@ export const Navigation = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 group min-w-0">
             <img 
-              src="/lovable-uploads/f45589f9-0bc5-486a-872d-c401e52cd58b.png" 
+              src="/favicon.png" 
               alt="नित्योत्कर्ष Logo" 
               className="h-8 sm:h-10 w-auto flex-shrink-0 group-hover:scale-105 transition-all duration-300"
             />

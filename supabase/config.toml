@@ -72,3 +72,6 @@ verify_jwt = false
 
 [functions.ai-diagnosis]
 verify_jwt = false
+
+[functions.disease-chatbot]
+verify_jwt = false
