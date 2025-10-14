@@ -82,15 +82,15 @@ export const DiseaseChatbot = () => {
   };
 
   return (
-    <Card className="bg-gradient-card shadow-feature border-border/50 h-[600px] flex flex-col">
+    <Card className="bg-card shadow-feature border-border/50 h-[600px] flex flex-col">
       <CardHeader className="pb-4">
         <CardTitle className="flex items-center gap-2">
           <Bot className="h-6 w-6 text-primary" />
           Medical AI Assistant
         </CardTitle>
       </CardHeader>
-      <CardContent className="flex-1 flex flex-col p-0">
-        <ScrollArea className="flex-1 px-6" ref={scrollRef}>
+      <CardContent className="flex-1 flex flex-col p-0 bg-background/95">
+        <ScrollArea className="flex-1 px-6 bg-background/50" ref={scrollRef}>
           <div className="space-y-4 pb-4">
             {messages.map((message, index) => (
               <div
@@ -105,10 +105,10 @@ export const DiseaseChatbot = () => {
                   </div>
                 )}
                 <div
-                  className={`max-w-[80%] rounded-2xl px-4 py-3 ${
+                  className={`max-w-[80%] rounded-2xl px-4 py-3 shadow-sm ${
                     message.role === 'user'
                       ? 'bg-primary text-primary-foreground'
-                      : 'bg-muted text-foreground'
+                      : 'bg-card text-foreground border border-border'
                   }`}
                 >
                   <p className="text-sm leading-relaxed whitespace-pre-wrap">
@@ -127,14 +127,14 @@ export const DiseaseChatbot = () => {
                 <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
                   <Bot className="h-5 w-5 text-primary" />
                 </div>
-                <div className="bg-muted rounded-2xl px-4 py-3">
+                <div className="bg-card border border-border rounded-2xl px-4 py-3 shadow-sm">
                   <Loader2 className="h-5 w-5 animate-spin text-primary" />
                 </div>
               </div>
             )}
           </div>
         </ScrollArea>
-        <div className="p-4 border-t border-border/50">
+        <div className="p-4 border-t border-border/50 bg-background">
           <div className="flex gap-2">
             <Input
               value={input}
