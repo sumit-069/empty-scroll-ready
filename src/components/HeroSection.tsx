@@ -39,7 +39,7 @@ export const HeroSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="space-y-10 animate-fade-in">
             {/* Enhanced Badge */}
-            <div className="inline-flex items-center px-6 py-3 bg-gradient-accent rounded-2xl text-sm font-semibold text-white shadow-glow backdrop-blur-sm border border-primary/20">
+            <div className="inline-flex items-center px-6 py-3 bg-gradient-accent rounded-2xl text-sm font-semibold text-black shadow-glow backdrop-blur-sm border border-primary/20">
               <Brain className="h-5 w-5 mr-3" />
               AI-Powered Medical Excellence
             </div>
