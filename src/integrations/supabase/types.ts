@@ -277,6 +277,27 @@ export type Database = {
           },
         ]
       }
+      waste_analysis_results: {
+        Row: {
+          created_at: string
+          data: Json
+          id: string
+          timestamp: string
+        }
+        Insert: {
+          created_at?: string
+          data: Json
+          id?: string
+          timestamp?: string
+        }
+        Update: {
+          created_at?: string
+          data?: Json
+          id?: string
+          timestamp?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       doctors_public: {
