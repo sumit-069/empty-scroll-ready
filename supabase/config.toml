@@ -68,10 +68,10 @@ vector_port = 54328
 gw_port = 54329
 
 [functions.ai-prognosis]
-verify_jwt = false
+verify_jwt = true
 
 [functions.ai-diagnosis]
-verify_jwt = false
+verify_jwt = true
 
 [functions.disease-chatbot]
-verify_jwt = false
+verify_jwt = true

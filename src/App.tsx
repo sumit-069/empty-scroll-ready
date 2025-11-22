@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Layout } from "./components/Layout";
 import { AuthProvider } from "./contexts/AuthContext";
+import { ProtectedRoute } from "./components/ProtectedRoute";
 import Index from "./pages/Index";
 import Prognosis from "./pages/Prognosis";
 import Diagnosis from "./pages/Diagnosis";
@@ -33,9 +34,9 @@ const App = () => (
           <Layout>
             <Routes>
               <Route path="/" element={<Index />} />
-              <Route path="/prognosis" element={<Prognosis />} />
-              <Route path="/diagnosis" element={<Diagnosis />} />
-              <Route path="/disease-search" element={<DiseaseSearchPage />} />
+              <Route path="/prognosis" element={<ProtectedRoute><Prognosis /></ProtectedRoute>} />
+              <Route path="/diagnosis" element={<ProtectedRoute><Diagnosis /></ProtectedRoute>} />
+              <Route path="/disease-search" element={<ProtectedRoute><DiseaseSearchPage /></ProtectedRoute>} />
               <Route path="/feedback" element={<Feedback />} />
               <Route path="/records" element={<PatientRecords />} />
               <Route path="/tributes" element={<Tributes />} />
